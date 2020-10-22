@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AddProduct } from '../actions/product-action';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-card',
@@ -8,9 +10,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() product: any;
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
+  }
+
+  public onAddToCart(): void {
+    this.addProduct(this.product.id, this.product.nom, this.product.prix, this.product.type, this.product.categorie, this.product.pathImg);
+  }
+
+  private addProduct(id: number, nom: string, prix: number, type: string, categorie: string, pathImg: string): void {
+    const quantite = 1;
+    this.store.dispatch(new AddProduct({ id, nom, prix, type, categorie, pathImg, quantite }));
   }
 
 }

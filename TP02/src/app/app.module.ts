@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng5SliderModule } from 'ng5-slider';
+import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app.component';
 import { TetiereComponent } from './tetiere/tetiere.component';
@@ -17,9 +18,13 @@ import { ListeProduitComponent } from './liste-produit/liste-produit.component';
 import { CardComponent } from './card/card.component';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 
+import { ProductState } from './states/product-state';
+import { PanierComponent } from './panier/panier.component';
+
 const appRoutes: Routes = [
   { path: 'createAccount', component: SaisieClientComponent },
   { path: 'catalogue', component: ListeProduitComponent },
+  { path: 'cart', component: PanierComponent },
   { path: '', redirectTo: 'catalogue', pathMatch: 'full' },
   { path: '**', redirectTo: 'catalogue' }
 ];
@@ -34,7 +39,8 @@ const appRoutes: Routes = [
     PhonepipePipe,
     ListeProduitComponent,
     CardComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,10 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxsModule.forRoot([
+      ProductState
+    ])
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
