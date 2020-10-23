@@ -20,13 +20,17 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 import { ProductState } from './states/product-state';
 import { PanierComponent } from './panier/panier.component';
+import { DetailProduitComponent } from './detail-produit/detail-produit.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 
 const appRoutes: Routes = [
+  { path: 'home', component: AcceuilComponent },
   { path: 'createAccount', component: SaisieClientComponent },
   { path: 'catalogue', component: ListeProduitComponent },
   { path: 'cart', component: PanierComponent },
-  { path: '', redirectTo: 'catalogue', pathMatch: 'full' },
-  { path: '**', redirectTo: 'catalogue' }
+  { path: 'catalogue/product/:id', component: DetailProduitComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
@@ -40,7 +44,9 @@ const appRoutes: Routes = [
     ListeProduitComponent,
     CardComponent,
     SearchFilterComponent,
-    PanierComponent
+    PanierComponent,
+    DetailProduitComponent,
+    AcceuilComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@
       <p class="card-text">{{product.prix}} €</p>
     </div>
     <div class="card-footer div-button">
-        <button type="button" class="btn btn-primary" (click)="onAddToCart()">Ajouter au panier</button>
+        <button type="button" class="btn btn-info button-font" [ngStyle]="{'margin-right': '2px'}" (click)="onDetailsRequest()">Détails</button>
+        <button type="button" class="btn btn-primary button-font" (click)="onAddToCart()">Ajouter au panier</button>
     </div>
   </div>

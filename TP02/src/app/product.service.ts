@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Produit } from './produit';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,15 @@ export class ProductService {
 
   getAllProducts(): any {
       return this.http.get('/assets/catalogue.json');
-      
+  }
+
+  async getOneProduct(id: number): Promise<Produit> {
+    return new Promise((resolve, reject) => {
+      const catalogue = this.http.get('/assets/catalogue.json');
+      catalogue.subscribe( products => {
+        console.log(products[id - 1]);
+        resolve(products[id - 1]);
+      });
+    });
   }
 }

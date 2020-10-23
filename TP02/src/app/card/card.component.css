@@ -1,3 +1,7 @@
 .div-button {
-    text-align: center;
+    display: flex;
+}
+
+.button-font {
+    font-size: small;
 }

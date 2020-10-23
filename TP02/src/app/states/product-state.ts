@@ -16,6 +16,13 @@ export class ProductState {
     return nbProducts;
   }
 
+  @Selector()
+  static getTotalPrices(state: ProductStateModel): number {
+    let total: number = 0;
+    state.products.map((product) => total += product.prix * product.quantite);
+    return total;
+  }
+
   @Action(AddProduct)
   add(
     { getState, patchState }: StateContext<ProductStateModel>,
@@ -23,8 +30,6 @@ export class ProductState {
   ) {
     const state = getState();
     patchState({
-      // créer un nouveau tableau
-      // l'opérateur ... permet de consituer une liste d'élement du tableau
       products: state.products.find(x => x.id === payload.id) ?
                     state.products.map((product) => {
                         let temp = Object.assign({}, product);
