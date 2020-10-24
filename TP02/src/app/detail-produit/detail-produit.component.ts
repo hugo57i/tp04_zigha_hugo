@@ -31,7 +31,8 @@ export class DetailProduitComponent implements OnInit {
   }
 
   public onAddToCart(): void {
-    this.addProduct(this.product.id, this.product.nom, this.product.prix, this.product.type, this.product.categorie, this.product.pathImg, this.product.description);
+    this.addProduct(this.product.id, this.product.nom, this.product.prix, this.product.type,
+      this.product.categorie, this.product.pathImg, this.product.description);
   }
 
   private addProduct(id: number, nom: string, prix: number, type: string, categorie: string, pathImg: string, description: string): void {

@@ -9,7 +9,7 @@ import countrydata from '../../assets/country.json';
 export class SaisieClientComponent implements OnInit {
   public submitted: boolean = false;
   public falseEmail: boolean = false;
-  public countries: any = countrydata;
+  public countries: [] = countrydata;
 
   public civilite: string = "Mr.";
   public nom: string;
@@ -21,10 +21,10 @@ export class SaisieClientComponent implements OnInit {
   public adresse: string;
   public ville: string;
   public codePostal: string ;
-  public pays: any = countrydata[0];
+  public pays: {name: string, dial_code: string, code: string} = countrydata[0];
   public telephone: string;
 
-  public data: any = {
+  public data: Object = {
     civilite: '',
     nom: '',
     prenom: '',
@@ -47,11 +47,11 @@ export class SaisieClientComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onValueChanged(event: any): void {
+  public onValueChanged(event): void {
     this.pays = event;
   }
 
-  public checkEmail(event: any): void {
+  public checkEmail(event): void {
     this.email = event;
     this.falseEmail = this.email.indexOf('.') !== -1 && this.email.indexOf('@') !== -1 ? false : true;
   }

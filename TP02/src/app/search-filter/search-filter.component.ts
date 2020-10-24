@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Options, LabelType } from 'ng5-slider';
+import { Produit } from '../produit';
 
 @Component({
   selector: 'app-search-filter',
@@ -38,28 +39,28 @@ export class SearchFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onCategoryChanged(event: any): void {
+  public onCategoryChanged(event): void {
     this.categorieSelected = event.target.value;
     if (event.target.value === 'Aucune') {
        if (this.typeSelected === 'Aucune') {
         this.showedProducts = this.products;
       } else {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.type === this.typeSelected;
         });
       }
     } else {
       if (this.typeSelected === 'Aucune') {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.categorie === event.target.value;
         });
       } else {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.categorie === event.target.value && product.type === this.typeSelected;
         });
       }
     }
-    this.showedProducts = this.showedProducts.filter((product: any) => {
+    this.showedProducts = this.showedProducts.filter((product: Produit) => {
       if (this.searchFilter === '') {
         return this.minValue <= product.prix && product.prix <= this.maxValue;
       } else {
@@ -70,28 +71,28 @@ export class SearchFilterComponent implements OnInit {
     this.showedProductsEvent.emit(this.showedProducts);
   }
 
-  public onTypeChanged(event: any): void {
+  public onTypeChanged(event): void {
     this.typeSelected = event.target.value;
     if (event.target.value === 'Aucune') {
        if (this.categorieSelected === 'Aucune') {
         this.showedProducts = this.products;
       } else {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.categorie === this.categorieSelected;
         });
       }
     } else {
       if (this.categorieSelected === 'Aucune') {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.type === event.target.value;
         });
       } else {
-        this.showedProducts = this.products.filter((product: any) => {
+        this.showedProducts = this.products.filter((product: Produit) => {
           return product.type === event.target.value && product.categorie === this.categorieSelected;
         });
       }
     }
-    this.showedProducts = this.showedProducts.filter((product: any) => {
+    this.showedProducts = this.showedProducts.filter((product: Produit) => {
       if (this.searchFilter === '') {
         return this.minValue <= product.prix && product.prix <= this.maxValue;
       } else {
@@ -103,20 +104,20 @@ export class SearchFilterComponent implements OnInit {
   }
 
   public priceChange(): void {
-    this.showedProducts = this.products.filter((product: any) => {
+    this.showedProducts = this.products.filter((product: Produit) => {
       return this.minValue <= product.prix && product.prix <= this.maxValue;
     });
     if (this.typeSelected !== 'Aucune') {
-      this.showedProducts = this.showedProducts.filter((product: any) => {
+      this.showedProducts = this.showedProducts.filter((product: Produit) => {
         return product.type === this.typeSelected;
       });
     }
     if (this.categorieSelected !== 'Aucune') {
-      this.showedProducts = this.showedProducts.filter((product: any) => {
+      this.showedProducts = this.showedProducts.filter((product: Produit) => {
         return product.categorie === this.categorieSelected;
       });
     }
-    this.showedProducts = this.showedProducts.filter((product: any) => {
+    this.showedProducts = this.showedProducts.filter((product: Produit) => {
       if (this.searchFilter === '') {
         return product;
       } else {
@@ -126,9 +127,9 @@ export class SearchFilterComponent implements OnInit {
     this.showedProductsEvent.emit(this.showedProducts);
   }
 
-  public searchByName(event: any): void {
+  public searchByName(event): void {
     this.searchFilter = event;
-    this.showedProducts = this.products.filter((product: any) => {
+    this.showedProducts = this.products.filter((product: Produit) => {
       if (event === '') {
         return product;
       } else {
@@ -136,19 +137,19 @@ export class SearchFilterComponent implements OnInit {
       }
     });
     if (this.typeSelected !== 'Aucune') {
-      this.showedProducts = this.showedProducts.filter((product: any) => {
+      this.showedProducts = this.showedProducts.filter((product: Produit) => {
         return product.type === this.typeSelected;
       });
     }
     if (this.categorieSelected !== 'Aucune') {
-      this.showedProducts = this.showedProducts.filter((product: any) => {
+      this.showedProducts = this.showedProducts.filter((product: Produit) => {
         return product.categorie === this.categorieSelected;
       });
     }
-    this.showedProducts = this.showedProducts.filter((product: any) => {
+    this.showedProducts = this.showedProducts.filter((product: Produit) => {
       return this.minValue <= product.prix && product.prix <= this.maxValue;
    });
-   this.showedProductsEvent.emit(this.showedProducts);
+    this.showedProductsEvent.emit(this.showedProducts);
   }
 
 }

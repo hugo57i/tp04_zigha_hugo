@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhonepipePipe implements PipeTransform {
 
-  transform(value: any, country: any): any {
+  transform(value: string, country: { name: string, dial_code: string, code: string}): string {
     if (value) {
       if (country.code === 'FR') {
         return value.charAt(0) + " " +  value.substr(1, value.length).replace(/(.{2})/g,"$1 ");

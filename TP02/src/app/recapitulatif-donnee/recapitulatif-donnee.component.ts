@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RecapitulatifDonneeComponent implements OnInit {
 
-  @Input() data: any;
+  @Input() data: Object;
   constructor() { }
 
   ngOnInit() {

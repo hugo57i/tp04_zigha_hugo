@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Produit } from './produit';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ProductService {
    }
 
 
-  getAllProducts(): any {
+  getAllProducts(): Observable<any> {
       return this.http.get('/assets/catalogue.json');
   }
 
@@ -20,7 +21,6 @@ export class ProductService {
     return new Promise((resolve, reject) => {
       const catalogue = this.http.get('/assets/catalogue.json');
       catalogue.subscribe( products => {
-        console.log(products[id - 1]);
         resolve(products[id - 1]);
       });
     });

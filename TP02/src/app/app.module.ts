@@ -1,34 +1,39 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { Ng5SliderModule } from 'ng5-slider';
 import { NgxsModule } from '@ngxs/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompteClientModule } from './modules/general/compte-client/compte-client.module';
+import { CatalogueModule } from './modules/general/catalogue/catalogue.module';
+import { DetailProduitModule } from './modules/general/detail-produit/detail-produit.module';
+import { PanierModule } from './modules/general/panier/panier.module';
 
+// Components
 import { AppComponent } from './app.component';
 import { TetiereComponent } from './tetiere/tetiere.component';
 import { FooterComponent } from './footer/footer.component';
-import { SaisieClientComponent } from './saisie-client/saisie-client.component';
-import { RecapitulatifDonneeComponent } from './recapitulatif-donnee/recapitulatif-donnee.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PhonepipePipe } from './phonepipe.pipe';
-import { ProductService } from './product.service';
-import { ListeProduitComponent } from './liste-produit/liste-produit.component';
-import { CardComponent } from './card/card.component';
-import { SearchFilterComponent } from './search-filter/search-filter.component';
-
-import { ProductState } from './states/product-state';
-import { PanierComponent } from './panier/panier.component';
-import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+
+// Services
+import { ProductService } from './product.service';
+
+// States
+import { ProductState } from './states/product-state';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: AcceuilComponent },
-  { path: 'createAccount', component: SaisieClientComponent },
-  { path: 'catalogue', component: ListeProduitComponent },
-  { path: 'cart', component: PanierComponent },
-  { path: 'catalogue/product/:id', component: DetailProduitComponent},
+  { path: 'createAccount', loadChildren: () => import('./modules/general/compte-client/compte-client.module')
+  .then(mod => mod.CompteClientModule) },
+  { path: 'catalogue', loadChildren: () => import('./modules/general/catalogue/catalogue.module')
+  .then(mod => mod.CatalogueModule)  },
+  { path: 'cart', loadChildren: () => import('./modules/general/panier/panier.module')
+  .then(mod => mod.PanierModule)  },
+  { path: 'catalogue/product/:id', loadChildren: () => import('./modules/general/detail-produit/detail-produit.module')
+  .then(mod => mod.DetailProduitModule)},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
@@ -38,14 +43,6 @@ const appRoutes: Routes = [
     AppComponent,
     TetiereComponent,
     FooterComponent,
-    SaisieClientComponent,
-    RecapitulatifDonneeComponent,
-    PhonepipePipe,
-    ListeProduitComponent,
-    CardComponent,
-    SearchFilterComponent,
-    PanierComponent,
-    DetailProduitComponent,
     AcceuilComponent
   ],
   imports: [
@@ -54,10 +51,13 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    Ng5SliderModule,
     NgxsModule.forRoot([
       ProductState
-    ])
+    ]),
+    CompteClientModule,
+    CatalogueModule,
+    DetailProduitModule,
+    PanierModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

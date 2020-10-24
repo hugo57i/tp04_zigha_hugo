@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
+import { Produit } from '../produit';
+
 
 @Component({
   selector: 'app-liste-produit',
@@ -20,7 +22,7 @@ export class ListeProduitComponent implements OnInit {
     this.productService.getAllProducts().subscribe((data) => {
       this.products = data;
       this.showedProducts = data;
-      this.products.map((product: any) => {
+      this.products.map((product: Produit) => {
         if (!this.categories.includes(product.categorie)) {
           this.categories.push(product.categorie);
         }
