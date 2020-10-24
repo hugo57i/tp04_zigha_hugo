@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
 import { CatalogueRoutingModule } from './catalogue-routing.module';
 
-import { ListeProduitComponent } from 'src/app/liste-produit/liste-produit.component';
-import { SearchFilterComponent } from 'src/app/search-filter/search-filter.component';
-import { CardComponent } from 'src/app/card/card.component';
+import { ListeProduitComponent } from '../../../liste-produit/liste-produit.component';
+import { SearchFilterComponent } from '../../../search-filter/search-filter.component';
+import { CardComponent } from '../../../card/card.component';
 
 
 @NgModule({

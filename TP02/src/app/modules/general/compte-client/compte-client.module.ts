@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CompteClientRoutingModule } from './compte-client-routing.module';
 
-import { SaisieClientComponent } from 'src/app/saisie-client/saisie-client.component';
-import { RecapitulatifDonneeComponent } from 'src/app/recapitulatif-donnee/recapitulatif-donnee.component';
-import { PhonepipePipe } from 'src/app/phonepipe.pipe';
+import { SaisieClientComponent } from '../../../saisie-client/saisie-client.component';
+import { RecapitulatifDonneeComponent } from '../../../recapitulatif-donnee/recapitulatif-donnee.component';
+import { PhonepipePipe } from '../../../phonepipe.pipe';
 
 
 @NgModule({
